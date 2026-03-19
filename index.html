@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>我的个人主页</title>
+    <meta name="description" content="我的第一个网页项目">
+    <style>
+        /* 全局样式 —— 设置字体和背景 */
+        body {
+            font-family: "Microsoft YaHei", sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f4f8;
+            color: #333;
+        }
+
+        /* 顶部横幅 */
+        header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        header p {
+            margin-top: 10px;
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        /* 主要内容区域 */
+        main {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* 卡片样式 */
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h2 {
+            color: #667eea;
+            margin-top: 0;
+        }
+
+        /* 列表样式 */
+        ul {
+            line-height: 2;
+            padding-left: 20px;
+        }
+
+        /* 按钮样式 */
+        button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        /* 深色模式 */
+        body.dark-mode {
+            background-color: #1a1a2e;
+            color: #eee;
+        }
+
+        body.dark-mode .card {
+            background: #16213e;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        body.dark-mode .card h2 {
+            color: #a29bfe;
+        }
+
+        body.dark-mode footer {
+            color: #666;
+        }
+
+        /* 底部 */
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #999;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>你好，欢迎来到我的主页！</h1>
+        <p>这是我用 Claude Code 做的第一个网页</p>
+    </header>
+
+    <main>
+        <div class="card">
+            <h2>关于我</h2>
+            <p>我是一个正在学习编程的新手，目前正在通过 Claude Code 学习 HTML、CSS 和 JavaScript。</p>
+        </div>
+
+        <div class="card">
+            <h2>我在学什么</h2>
+            <ul>
+                <li>HTML — 网页的骨架</li>
+                <li>CSS — 网页的外观</li>
+                <li>JavaScript — 网页的互动</li>
+                <li>Git — 代码版本管理</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>学习目标</h2>
+            <p>7天掌握 Claude Code 的核心功能，能够独立完成网页项目开发。</p>
+        </div>
+
+        <div class="card">
+            <h2>学习进度</h2>
+            <p>Day 1: 认识 Claude Code & 基础对话 ✅</p>
+            <p>Day 2: Git 版本控制 📖 ← 进行中</p>
+            <p>Day 3: CLAUDE.md & 记忆系统 🔒</p>
+            <p>Day 4: 规划模式 & 多文件操作 🔒</p>
+            <p>Day 5: 设置 & 个性化配置 🔒</p>
+            <p>Day 6: 实战项目 & 高级技巧 🔒</p>
+            <p>Day 7: 综合复习 & 进阶探索 🔒</p>
+        </div>
+
+        <div class="card">
+            <h2>每日名言</h2>
+            <p id="quote" style="font-size: 1.2em; font-style: italic; color: #667eea;">"加载中..."</p>
+            <button onclick="newQuote()">换一句</button>
+        </div>
+
+        <!-- ====== JavaScript 互动区域 ====== -->
+        <div class="card">
+            <h2>互动体验</h2>
+
+            <!-- 功能1：点击按钮弹出问候 -->
+            <p><strong>1. 点击问候</strong></p>
+            <button onclick="sayHello()">点我打招呼</button>
+            <p id="greeting-text"></p>
+
+            <!-- 功能2：点击计数器 -->
+            <p><strong>2. 点击计数器</strong></p>
+            <button onclick="addCount()">已点击 <span id="count">0</span> 次</button>
+
+            <!-- 功能3：切换深色模式 -->
+            <p><strong>3. 深色模式</strong></p>
+            <button onclick="toggleDarkMode()">切换深色/浅色模式</button>
+
+            <!-- 功能4：显示当前时间 -->
+            <p><strong>4. 实时时钟</strong></p>
+            <p id="clock" style="font-size: 1.5em; color: #667eea; font-weight: bold;">00:00:00</p>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2026 我的第一个项目 — Made with Claude Code
+    </footer>
+
+    <script>
+        // ========== 每日名言 ==========
+        var quotes = [
+            "学习不是填满水桶，而是点燃火焰。 —— 叶芝",
+            "千里之行，始于足下。 —— 老子",
+            "代码写得好，Bug 少不了... 等等，不对。 —— 程序员语录",
+            "先完成，再完美。 —— 编程箴言",
+            "今天的努力，是明天的底气。"
+        ];
+
+        function newQuote() {
+            var index = Math.floor(Math.random() * quotes.length);
+            document.getElementById("quote").textContent = '"' + quotes[index] + '"';
+        }
+        newQuote(); // 页面加载时显示一句
+
+        // ========== 功能1：点击问候 ==========
+        // 根据当前时间，显示不同的问候语
+        function sayHello() {
+            var hour = new Date().getHours();   // 获取当前小时（0-23）
+            var message;
+
+            if (hour < 6) {
+                message = "夜深了，注意休息哦！🌙";
+            } else if (hour < 12) {
+                message = "早上好！今天也要加油！☀️";
+            } else if (hour < 18) {
+                message = "下午好！学习辛苦了！📚";
+            } else {
+                message = "晚上好！欢迎来学习！🌟";
+            }
+
+            document.getElementById("greeting-text").textContent = message;
+        }
+
+        // ========== 功能2：点击计数器 ==========
+        var clickCount = 0;  // 用一个变量记住点了多少次
+
+        function addCount() {
+            clickCount = clickCount + 1;  // 每次点击 +1
+            document.getElementById("count").textContent = clickCount;
+        }
+
+        // ========== 功能3：切换深色模式 ==========
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark-mode");
+            // toggle 的意思是：有就去掉，没有就加上
+        }
+
+        // ========== 功能4：实时时钟 ==========
+        function updateClock() {
+            var now = new Date();
+            var hours = String(now.getHours()).padStart(2, "0");
+            var minutes = String(now.getMinutes()).padStart(2, "0");
+            var seconds = String(now.getSeconds()).padStart(2, "0");
+            document.getElementById("clock").textContent = hours + ":" + minutes + ":" + seconds;
+        }
+
+        // 每秒更新一次时钟
+        setInterval(updateClock, 1000);
+        updateClock();  // 页面加载时立即显示一次
+    </script>
+</body>
+</html>
